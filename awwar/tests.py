@@ -19,3 +19,26 @@ class TestPostModel(TestCase):
             post_date=datetime.now(),
             technologies='lorem, ipsum, dolor, sit, amet'
         )
+
+    def test_post_create(self):
+        self.post.save()
+        query = Post.objects.all()
+        self.assertTrue(len(query)>0)
+        
+    def test_post_update(self):
+        self.post.save()
+        test_title = 'updated_title'
+        self.post.title = test_title
+        self.post.save()
+        self.assertTrue(self.post.title,test_title)
+        
+    def test_delete_post(self):
+        self.post.save()
+        self.post.delete()
+        query =Post.objects.all()
+        self.assertIs(len(query),0)
+        
+    def test_post_is_instance(self):
+        self.post.save()
+        query = Post.objects.all()
+        self.assertIsInstance(query[0],Post)
