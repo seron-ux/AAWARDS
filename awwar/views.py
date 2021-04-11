@@ -24,28 +24,28 @@ def index(request):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'awwa/post_detail.html'
+    template_name = 'awwar/post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['image', 'title', 'desc', 'link','technologies', 'post_date', 'user']
-    template_name = 'awwa/post_form.html'
+    fields = ['image', 'title', 'desc', 'link','technologies']
+    template_name = 'awwar/post_form.html'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 def search_results(request):
 
-    if 'username' in request.GET and request.GET["username"]:
-        search_term = request.GET.get("username")
-        searched_username = Profile.search_by_username(search_term)
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search(search_term)
         message = f"{search_term}"
 
-        return render(request, 'awwa/search.html',{"message":message,"usernames": searched_username})
+        return render(request, 'awwar/search.html',{"message":message,"posts": searched_posts})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'awwa/search.html',{"message":message})
+        return render(request, 'awwar/search.html',{"message":message})
 
 

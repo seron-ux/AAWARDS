@@ -1,4 +1,5 @@
 {% load static %}
+{% load cloudinary %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <form action="{% url 'search_results' %}">
-                <input type="text" placeholder="Search.." name="username">
+                <input type="text" placeholder="Search.." name="post">
                 <button type="submit" value="Search"><i class="fa fa-search"></i></button>
               </form>
             <div class="collapse navbar-collapse" id="navbarToggle">

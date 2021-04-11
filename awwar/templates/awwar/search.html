@@ -1,4 +1,4 @@
-{% extends 'awwa/base.html' %}
+{% extends 'awwar/base.html' %}
 {%  block content %}
 
 <div class="container">
@@ -10,10 +10,11 @@
   {% endif %}
 </div>
 </div>
-<div class="container">
+
+<div class="container pt-5">
 {% for post in posts %}
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{post.image.url}}" alt="{{ post.title}}" class="img-responsive" >">
+  <img class="card-img-top" src="{{post.image.url}}" alt="{{ post.title}}" class="img-responsive" >
   <div class="card-body">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.desc}}</p>

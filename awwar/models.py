@@ -1,14 +1,13 @@
 from django.db import models
-
-# Create your models here.
+from cloudinary.models import CloudinaryField
 from django.db import models
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.db.models import Q
 
-# Create your models here.
 
 
 class Post (models.Model):
@@ -16,7 +15,7 @@ class Post (models.Model):
     title= models.CharField(max_length=50)
     desc= models.TextField()
     post_date = models.DateTimeField(default=timezone.now)
-    image = models.ImageField(upload_to='awwad/')
+    image = CloudinaryField('images')
     link = models.URLField(max_length=70)
     technologies = models.CharField(max_length=100)
 
